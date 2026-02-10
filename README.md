@@ -1,1 +1,1 @@
-hello! this is to test jfrog FrogBOT
+hello! this is to test jfrog FrogBOT scan
