@@ -1,18 +1,28 @@
-name: Frogbot Scan
-
+name: "Frogbot Scan"
 on:
   pull_request:
-
+    types: [opened, synchronize]
+  push:
+    branches:
+      - master
+permissions:
+  pull-requests: write
+  contents: write
+  security-events: write
 jobs:
-  scan:
+  frogbot-scan:
     runs-on: ubuntu-latest
     steps:
+<<<<<<< HEAD:.github/workflows/frogbot-scan.yml
       - uses: actions/checkout@v3
       - name: Frogbot Scan Maven Example Only
         uses: jfrog/frogbot@v2
         with:
           command: scan-pull-request
           target: "maven-examples"  # scan only Maven project
+=======
+      - uses: jfrog/frogbot@v2
+>>>>>>> d3f488a (Add Frogbot workflow):.github/workflows/frogbot.yml
         env:
           JF_URL: ${{ secrets.JF_URL }}
           JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
