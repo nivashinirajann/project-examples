@@ -1,19 +1,20 @@
-name: Frogbot Create Fix Pull Requests
+name: Frogbot Scan
 
 on:
-  push:
-    branches: [ main ]
+  pull_request:
 
 jobs:
-  fix:
+  scan:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: jfrog/frogbot@v2
+      - name: Frogbot Scan Maven Example Only
+        uses: jfrog/frogbot@v2
+        with:
+          command: scan-pull-request
+          target: "maven-examples"  # scan only Maven project
         env:
           JF_URL: ${{ secrets.JF_URL }}
           JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
           JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          command: create-fix-pull-requests
 
