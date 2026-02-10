@@ -8,8 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Frogbot Scan
+      - name: Frogbot Scan Maven Example Only
         uses: jfrog/frogbot@v2
+        with:
+          command: scan-pull-request
+          target: "maven-examples"  # scan only Maven project
         env:
           JF_URL: ${{ secrets.JF_URL }}
           JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
